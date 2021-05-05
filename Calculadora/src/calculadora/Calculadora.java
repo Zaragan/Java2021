@@ -102,20 +102,32 @@ public class Calculadora {
 		
 		btnNewButton = new JButton("Resolver");
 		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				/*int uno = Integer.parseInt(OperadorUno.getText());
-				int resultado = uno * 2;
-				String strResultado = String.valueOf(resultado);
-				lblResultado.setText(strResultado);
-				
-				lblResultado.setText(String.valueOf(Integer.parseInt(OperadorUno.getText())*2));*/
-				
+			public void actionPerformed(ActionEvent e) {				
 				String caso = (String) cbOperacion.getSelectedItem();
 				switch (caso) {
 				case "Sumar":
-					int valor1 = Integer.parseInt(OperadorUno.getText());
-					int valor2 = Integer.parseInt(OperadorDos.getText());
-					lblResultado.setText(String.valueOf(suma(valor1, valor2)));
+					int sumar1 = Integer.parseInt(OperadorUno.getText());
+					int sumar2 = Integer.parseInt(OperadorDos.getText());
+					lblResultado.setText(String.valueOf(suma(sumar1, sumar2)));
+					break;
+				case "Restar":
+					int restar1 = Integer.parseInt(OperadorUno.getText());
+					int restar2 = Integer.parseInt(OperadorDos.getText());
+					lblResultado.setText(String.valueOf(resta(restar1, restar2)));
+					break;
+				case "Multiplicar":
+					int multi1 = Integer.parseInt(OperadorUno.getText());
+					int multi2 = Integer.parseInt(OperadorDos.getText());
+					lblResultado.setText(String.valueOf(multiplica(multi1, multi2)));
+					break;
+				case "Dividir":
+					int div1 = Integer.parseInt(OperadorUno.getText());
+					int div2 = Integer.parseInt(OperadorDos.getText());
+					if(div2 == 0) {
+						lblResultado.setText("No dividas entre 0...");
+						break;
+					}
+					lblResultado.setText(String.valueOf(divide(div1, div2)));
 					break;
 				default:
 					throw new IllegalArgumentException("Unexpected value: " + cbOperacion.getSelectedItem());
