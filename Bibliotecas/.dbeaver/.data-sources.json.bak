@@ -1,0 +1,43 @@
+{
+	"folders": {},
+	"connections": {
+		"sqlite_jdbc-179220a133f-5b882e4fe48f7bc9": {
+			"provider": "generic",
+			"driver": "sqlite_jdbc",
+			"name": "tienda.db",
+			"save-password": true,
+			"read-only": false,
+			"configuration": {
+				"database": "C:\\Users\\curso\\Desktop\\Oracle Workspace\\Bibliotecas\\tienda.db",
+				"url": "jdbc:sqlite:C:\\Users\\curso\\Desktop\\Oracle Workspace\\Bibliotecas\\tienda.db",
+				"type": "dev",
+				"auth-model": "native"
+			}
+		},
+		"sqlite_jdbc-179224ce3ea-36a4eee3ef12376d": {
+			"provider": "generic",
+			"driver": "sqlite_jdbc",
+			"name": "Aprureba.db",
+			"save-password": true,
+			"show-system-objects": true,
+			"read-only": false,
+			"configuration": {
+				"database": "C:\\Users\\curso\\Desktop\\Oracle Workspace\\Bibliotecas\\Aprureba.db",
+				"url": "jdbc:sqlite:C:\\Users\\curso\\Desktop\\Oracle Workspace\\Bibliotecas\\Aprureba.db",
+				"type": "dev",
+				"auth-model": "native"
+			}
+		}
+	},
+	"connection-types": {
+		"dev": {
+			"name": "Development",
+			"color": "255,255,255",
+			"description": "Regular development database",
+			"auto-commit": true,
+			"confirm-execute": false,
+			"confirm-data-change": false,
+			"auto-close-transactions": false
+		}
+	}
+}

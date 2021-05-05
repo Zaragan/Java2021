@@ -1,0 +1,30 @@
+{
+	"folders": {},
+	"connections": {
+		"sqlite_jdbc-179312c4231-73ca64fba348ee70": {
+			"provider": "generic",
+			"driver": "sqlite_jdbc",
+			"name": "supermercado.db",
+			"save-password": true,
+			"read-only": false,
+			"configuration": {
+				"database": "C:\\Users\\curso\\Desktop\\Oracle Workspace\\Supermercado\\supermercado.db",
+				"url": "jdbc:sqlite:C:\\Users\\curso\\Desktop\\Oracle Workspace\\Supermercado\\supermercado.db",
+				"type": "dev",
+				"auth-model": "native",
+				"handlers": {}
+			}
+		}
+	},
+	"connection-types": {
+		"dev": {
+			"name": "Development",
+			"color": "255,255,255",
+			"description": "Regular development database",
+			"auto-commit": true,
+			"confirm-execute": false,
+			"confirm-data-change": false,
+			"auto-close-transactions": false
+		}
+	}
+}
