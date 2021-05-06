@@ -76,7 +76,7 @@ public class Mascota {
 
 	@Override
 	public String toString() {
-		return "Mascota [id=" + id + ", nombre=" + nombre + ", fechaNacimiento=" + fechaNacimiento + "]";
+		return "\rMascota [id=" + id + ", nombre=" + nombre + ", fechaNacimiento=" + fechaNacimiento + "]";
 	}
 	
 	

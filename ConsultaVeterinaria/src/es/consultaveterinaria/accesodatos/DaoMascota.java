@@ -32,8 +32,7 @@ public class DaoMascota {
 			ArrayList<Mascota> mascotas = new ArrayList<>();
 
 			while (rs.next()) {
-				mascotas.add(new Mascota(rs.getInt("id"), rs.getString("nombre"),
-						rs.getDate("fecha_nacimiento").toLocalDate()));
+				mascotas.add(new Mascota(rs.getInt("id"), rs.getString("nombre"), rs.getDate("fecha_nacimiento").toLocalDate()));
 			}
 
 			return mascotas;
@@ -41,7 +40,6 @@ public class DaoMascota {
 			throw new AccesoDatosException("No se han podido obtener todos los registros", e);
 		}
 	}
-	
 	public static Mascota obtenerPorId(Integer id) {
 		try (Connection con = obtenerConexion();
 				PreparedStatement ps = con.prepareStatement(SQL_SELECT_ID);
