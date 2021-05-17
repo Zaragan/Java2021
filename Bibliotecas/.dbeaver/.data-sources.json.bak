@@ -27,6 +27,20 @@
 				"type": "dev",
 				"auth-model": "native"
 			}
+		},
+		"sqlite_jdbc-179312d3a93-523bcd3e87965640": {
+			"provider": "generic",
+			"driver": "sqlite_jdbc",
+			"name": "supermercado.db",
+			"save-password": true,
+			"read-only": false,
+			"configuration": {
+				"database": "C:\\Users\\curso\\Desktop\\Oracle Workspace\\Supermercado\\supermercado.db",
+				"url": "jdbc:sqlite:C:\\Users\\curso\\Desktop\\Oracle Workspace\\Supermercado\\supermercado.db",
+				"type": "dev",
+				"auth-model": "native",
+				"handlers": {}
+			}
 		}
 	},
 	"connection-types": {
