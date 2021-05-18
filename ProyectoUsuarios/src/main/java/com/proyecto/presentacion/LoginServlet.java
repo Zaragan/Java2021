@@ -1,6 +1,7 @@
 package com.proyecto.presentacion;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import com.proyecto.accesso.Dao;
 import com.proyecto.entidades.Usuario;
@@ -28,29 +29,48 @@ public class LoginServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		switch (tipo) {
 			case "identificar":
-				if(email != null && password != null) {
-					//saca datos
-					Usuario user = Dao.obtenerPorEmail(email);
-					String uEmail = user.getEmail();
-					String uPass = user.getPassword();
-					if(email == uEmail && password == uPass) {
-						request.getSession().setAttribute("email", uEmail);
-						response.sendRedirect("principal.jsp");
-					} else {
-						request.setAttribute("error", "Usuario o contraseña incorrectos");
-						request.getRequestDispatcher("/index.jsp").forward(request, response);
-					}
-					
-				} else {
-					request.setAttribute("error", "Debes introducir un usuario y contraseña válidas.");
+				if(email.isEmpty() || password.isEmpty()) {
+					request.setAttribute("error", "Rellena los campos obligatorios.");
 					request.getRequestDispatcher("/index.jsp").forward(request, response);
+				} else {
+					Usuario usuario;
+					usuario = Dao.obtenerPorEmail(email);
+					if(usuario == null) {
+						request.setAttribute("error", "No se ha encontrado el usuario.");
+						request.getRequestDispatcher("/index.jsp").forward(request, response);
+					} else {
+						
+						if(usuario.getEmail().equals(email) && usuario.getPassword().equals(password)) {
+							request.getSession().setAttribute("email", email);
+							response.sendRedirect("principal.jsp");	
+						} else {
+							request.setAttribute("error", "Usuario o contraseña incorrecta.");
+							request.getRequestDispatcher("/index.jsp").forward(request, response);
+						}
+					}
 				}
-				
 				break;
 			case "registro":
-				Usuario addUser = new Usuario(email,password);
-				Dao.insertar(addUser);
-				break;
+				if(email.isEmpty() || password.isEmpty()) {
+					request.setAttribute("error", "Rellena los campos obligatorios.");
+					request.getRequestDispatcher("/index.jsp").forward(request, response);
+				} else {
+					ArrayList<String> user = Dao.obtenerEmails();
+					int reg = 0;
+					for(String u: user) {
+						if(email.equals(u)) {
+							reg = 1;
+							request.setAttribute("error", "Nombre de usuario en uso.");
+							request.getRequestDispatcher("/index.jsp").forward(request, response);
+						}
+					}
+					if(reg == 0) {
+						Usuario addUser = new Usuario(email,password);
+						Dao.insertar(addUser);
+						request.getSession().setAttribute("email", email);
+						response.sendRedirect("principal.jsp");	
+					}
+				}
 		}
 
 		

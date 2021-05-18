@@ -20,6 +20,7 @@ public class Dao {
 		// Consultas que vamos a lanzar a la base de datos
 		// Personalizar tablas y campos
 		private static final String SQL_SELECT = "SELECT id, email, password FROM usuarios";
+		private static final String SQL_SELECT_EMAILS = "SELECT email FROM usuarios";
 		private static final String SQL_SELECT_ID = SQL_SELECT + " WHERE id=?";
 		private static final String SQL_SELECT_EMAIL = SQL_SELECT + " WHERE email=?";
 		private static final String SQL_INSERT = "INSERT INTO usuarios (email, password) VALUES (?, ?)";
@@ -41,7 +42,6 @@ public class Dao {
 		// Totalmente genérico. No hay que personalizar
 		private static Connection obtenerConexion() {
 			try {
-				System.out.println(URL);
 				return DriverManager.getConnection(URL, USUARIO_BDD, PASSWORD_BDD);
 			} catch (Exception e) {
 				throw new RuntimeException("No se ha podido conectar a la base de datos", e);
@@ -62,6 +62,27 @@ public class Dao {
 					// campos
 					// de la tabla en los propios campos del objeto
 					usuarios.add(new Usuario(rs.getString("email"), rs.getString("password")));
+				}
+
+				return usuarios;
+			} catch (SQLException e) {
+				throw new RuntimeException("Ha habido un error al obtener los registros", e);
+			}
+		}
+		
+		public static ArrayList<String> obtenerEmails() {
+			try (Connection con = obtenerConexion();
+					PreparedStatement ps = con.prepareStatement(SQL_SELECT_EMAILS);
+					ResultSet rs = ps.executeQuery()) {
+
+				// Debemos cambiar Usuario por el que represente nuestros datos
+				ArrayList<String> usuarios = new ArrayList<>();
+
+				while (rs.next()) {
+					// Usar el constructor más grande de nuestra clase para capturar todos los
+					// campos
+					// de la tabla en los propios campos del objeto
+					usuarios.add(new String(rs.getString("email")));
 				}
 
 				return usuarios;
