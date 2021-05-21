@@ -1,16 +1,11 @@
 package com.proyecto.accesso;
 
-import java.security.SecureRandom;
-import java.security.spec.KeySpec;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.PBEKeySpec;
 
 import com.proyecto.entidades.Usuario;
 
@@ -143,19 +138,9 @@ public class Dao {
 
 		// Debemos cambiar Usuario por el que represente nuestros datos
 		public static void insertar(Usuario usuario) {
-			try (Connection con = obtenerConexion(); PreparedStatement ps = con.prepareStatement(SQL_INSERT);) {
-				SecureRandom random = new SecureRandom();
-				byte[] salt = new byte[16];
-				random.nextBytes(salt);
-				
-				KeySpec spec = new PBEKeySpec(usuario.getPassword().toCharArray(), salt, 65536, 128);
-				SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
-				
-				byte[] hash = factory.generateSecret(spec).getEncoded();
-				String hashed = hash.toString();
-				
+			try (Connection con = obtenerConexion(); PreparedStatement ps = con.prepareStatement(SQL_INSERT);) {				
 				ps.setString(1, usuario.getEmail());
-				ps.setString(2, hashed);
+				ps.setString(2, usuario.getPassword());
 				
 				ps.executeUpdate();
 			} catch (SQLException e) {
