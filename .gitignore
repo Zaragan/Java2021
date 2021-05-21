@@ -1,3 +1,6 @@
 /.metadata/
-Javierlete/
+/.git/
+/Javierlete/
+/Servers/
 *.png
+.gitignore
