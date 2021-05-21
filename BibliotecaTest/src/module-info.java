@@ -1,0 +1,3 @@
+module bibliotecaTest {
+	requires Bibliotecas;
+}

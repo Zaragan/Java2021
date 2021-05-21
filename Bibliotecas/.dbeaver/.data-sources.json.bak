@@ -38,8 +38,23 @@
 				"database": "C:\\Users\\curso\\Desktop\\Oracle Workspace\\Supermercado\\supermercado.db",
 				"url": "jdbc:sqlite:C:\\Users\\curso\\Desktop\\Oracle Workspace\\Supermercado\\supermercado.db",
 				"type": "dev",
-				"auth-model": "native",
-				"handlers": {}
+				"auth-model": "native"
+			}
+		},
+		"sqlite_jdbc-17979b8526d-4acc48debdc93930": {
+			"provider": "generic",
+			"driver": "sqlite_jdbc",
+			"name": "database.sqlite3",
+			"save-password": true,
+			"read-only": false,
+			"configuration": {
+				"database": "C:\\Users\\curso\\Desktop\\Oracle Workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ProyectoUsuarios\\WEB-INF\\database.sqlite3",
+				"url": "jdbc:sqlite:C:\\Users\\curso\\Desktop\\Oracle Workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ProyectoUsuarios\\WEB-INF\\database.sqlite3",
+				"type": "dev",
+				"auth-model": "native"
+			},
+			"custom-properties": {
+				"database.meta.separate.connection": "false"
 			}
 		}
 	},
