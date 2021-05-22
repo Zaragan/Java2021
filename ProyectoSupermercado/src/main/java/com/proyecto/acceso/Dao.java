@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import com.proyecto.entidades.Usuario;
 
+@SuppressWarnings("unused")
 public class Dao {
 	// Datos para personalizar qué base de datos vamos a utilizar
 		private static final String JDBC_DRIVER = "org.sqlite.JDBC"; // Driver de la base de datos (lo indica cada fabricante)
@@ -149,7 +150,7 @@ public class Dao {
 				//			AQUI LO DEJAMOS
 				 try (ResultSet rs = ps.getGeneratedKeys()) {
 			            if (rs.next()) {
-			                user.setId(rs.getLong(1));
+			                //user.setId(rs.getLong(1));
 			            }
 			            else {
 			                throw new SQLException("Creating user failed, no ID obtained.");
