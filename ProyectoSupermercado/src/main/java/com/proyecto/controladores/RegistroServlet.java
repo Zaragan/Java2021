@@ -24,9 +24,11 @@ public class RegistroServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		String nombre = request.getParameter("nombre");
+
+		
 		if(email.isEmpty() || password.isEmpty() || nombre.isEmpty()) {
 			request.setAttribute("error", "Rellena los campos obligatorios.");
-			request.getRequestDispatcher("/index.jsp").forward(request, response);
+			request.getRequestDispatcher("/registro.jsp").forward(request, response);
 		} else {
 			ArrayList<String> usuarios = Dao.obtenerEmails();
 			int registrado = 0;
@@ -38,10 +40,12 @@ public class RegistroServlet extends HttpServlet {
 				}
 			}
 			if(registrado == 0) {
-				Usuario addUser = new Usuario(email,password, nombre);
+				Usuario addUser = new Usuario(email,password,nombre);
 				Dao.insertar(addUser);
 				request.getSession().setAttribute("email", email);
-				response.sendRedirect("inddex.jsp");	
+				request.getSession().setAttribute("nombre", nombre);
+				//request.getSession().setAttribute("usuario", addUser);
+				response.sendRedirect("principal.jsp");	
 			}
 		}	
 	}

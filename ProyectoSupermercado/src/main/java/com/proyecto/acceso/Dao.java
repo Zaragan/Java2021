@@ -1,11 +1,9 @@
 package com.proyecto.acceso;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.proyecto.entidades.Usuario;
@@ -13,20 +11,20 @@ import com.proyecto.entidades.Usuario;
 public class Dao {
 	// Datos para personalizar qué base de datos vamos a utilizar
 		private static final String JDBC_DRIVER = "org.sqlite.JDBC"; // Driver de la base de datos (lo indica cada fabricante)
-		private static final String URL = "jdbc:sqlite:C:\\Users\\curso\\Desktop\\Oracle Workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ProyectoSupermercado\\WEB-INF\\supermercado.db"; // supermercado.sqlite3 debe estar en el raízdel proyecto
+		private static final String URL = "jdbc:sqlite:C:\\Users\\curso\\Desktop\\Oracle Workspace\\.database\\ProyectoSupermercado.db";
 		private static final String USUARIO_BDD = ""; // Usuario de la base de datos si lo necesita
 		private static final String PASSWORD_BDD = "";// Contraseña de la base de datos si lo necesita
 
 		// Consultas que vamos a lanzar a la base de datos
 		// Personalizar tablas y campos
-		private static final String SQL_SELECT = "SELECT id, email, password FROM usuarios";
+		private static final String SQL_SELECT = "SELECT uid, email, password, nombre FROM usuarios";
 		private static final String SQL_SELECT_EMAILS = "SELECT email FROM usuarios";
-		private static final String SQL_SELECT_ID = SQL_SELECT + " WHERE id=?";
+		private static final String SQL_SELECT_ID = SQL_SELECT + " WHERE uid=?";
 		private static final String SQL_SELECT_EMAIL = SQL_SELECT + " WHERE email=?";
 		private static final String SQL_INSERT = "INSERT INTO usuarios (email, password, nombre) VALUES (?, ?, ?)";
-		private static final String SQL_INSERT_PERMISOS = "INSERT INTO permisos (uid) VALUES (?)";
-		private static final String SQL_UPDATE = "UPDATE usuarios SET email=?, password=? WHERE id=?";
-		private static final String SQL_DELETE = "DELETE FROM usuarios WHERE id=?";
+		private static final String SQL_INSERT_PERMISOS = "INSERT INTO permisos (is_admin) VALUES (?)";
+		private static final String SQL_UPDATE = "UPDATE usuarios SET email=?, password=? WHERE uid=?";
+		private static final String SQL_DELETE = "DELETE FROM usuarios WHERE uid=?";
 
 		// Bloque que a veces es necesario si después de tener la cadena de conexión
 		// correcta (URL)
@@ -72,23 +70,20 @@ public class Dao {
 		}
 		
 		public static ArrayList<String> obtenerEmails() {
-			try (Connection con = obtenerConexion();
-					PreparedStatement ps = con.prepareStatement(SQL_SELECT_EMAILS);
-					ResultSet rs = ps.executeQuery()) {
-
-				// Debemos cambiar Usuario por el que represente nuestros datos
+			try(Connection con = obtenerConexion(); PreparedStatement ps = con.prepareStatement(SQL_SELECT_EMAILS);) {
 				ArrayList<String> usuarios = new ArrayList<>();
 
-				while (rs.next()) {
+				ResultSet rs = ps.executeQuery();
+
+				if (rs.next()) {
 					// Usar el constructor más grande de nuestra clase para capturar todos los
 					// campos
 					// de la tabla en los propios campos del objeto
 					usuarios.add(new String(rs.getString("email")));
 				}
-
 				return usuarios;
 			} catch (SQLException e) {
-				throw new RuntimeException("Ha habido un error al obtener los registros", e);
+				throw new RuntimeException("Ha habido un error", e);
 			}
 		}
 
@@ -140,21 +135,18 @@ public class Dao {
 		// Debemos cambiar Usuario por el que represente nuestros datos
 		public static void insertar(Usuario usuario) {
 
-			try (Connection con = obtenerConexion(); PreparedStatement ps = con.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);) {				
+			try (Connection con = obtenerConexion(); PreparedStatement ps = con.prepareStatement(SQL_INSERT);) {				
 				ps.setString(1, usuario.getEmail());
 				ps.setString(2, usuario.getPassword());
 				ps.setString(3, usuario.getNombre());
 				ps.executeUpdate();
+			} catch (SQLException e) {
+				throw new RuntimeException("Ha habido un error al insertar el registro", e);
+			}
+			try (Connection con = obtenerConexion(); PreparedStatement ps = con.prepareStatement(SQL_INSERT_PERMISOS);) {				
+				ps.setString(1, "0");
+				ps.executeUpdate();
 				
-				//			AQUI LO DEJAMOS
-				 try (ResultSet rs = ps.getGeneratedKeys()) {
-			            if (rs.next()) {
-			                user.setId(rs.getLong(1));
-			            }
-			            else {
-			                throw new SQLException("Creating user failed, no ID obtained.");
-			            }
-			        }
 			} catch (SQLException e) {
 				throw new RuntimeException("Ha habido un error al insertar el registro", e);
 			}
@@ -163,7 +155,7 @@ public class Dao {
 		// Debemos cambiar Usuario por el que represente nuestros datos
 		public static void modificar(Usuario usuario) {
 			try (Connection con = obtenerConexion(); PreparedStatement ps = con.prepareStatement(SQL_UPDATE);) {
-
+				
 				ps.setString(1, usuario.getEmail());
 				ps.setString(2, usuario.getPassword());
 				ps.setInt(5, usuario.getId());
