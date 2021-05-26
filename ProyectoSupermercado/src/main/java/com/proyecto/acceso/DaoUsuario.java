@@ -11,7 +11,8 @@ import com.proyecto.entidades.Usuario;
 public class DaoUsuario {
 	// Datos para personalizar qué base de datos vamos a utilizar
 		private static final String JDBC_DRIVER = "org.sqlite.JDBC"; // Driver de la base de datos (lo indica cada fabricante)
-		private static final String URL = "jdbc:sqlite:C:\\Users\\curso\\Desktop\\.database\\ProyectoSupermercado.db";
+//		private static final String URL = "jdbc:sqlite:C:\\Users\\curso\\Desktop\\.database\\ProyectoSupermercado.db";
+		private static final String URL = "jdbc:sqlite:B:\\Java 2021\\.database\\ProyectoSupermercado.db";
 		private static final String USUARIO_BDD = ""; // Usuario de la base de datos si lo necesita
 		private static final String PASSWORD_BDD = "";// Contraseña de la base de datos si lo necesita
 
