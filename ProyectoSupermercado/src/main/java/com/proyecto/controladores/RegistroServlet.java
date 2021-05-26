@@ -3,7 +3,7 @@ package com.proyecto.controladores;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import com.proyecto.acceso.Dao;
+import com.proyecto.acceso.DaoUsuario;
 import com.proyecto.entidades.Usuario;
 
 import jakarta.servlet.ServletException;
@@ -30,7 +30,7 @@ public class RegistroServlet extends HttpServlet {
 			request.setAttribute("error", "Rellena los campos obligatorios.");
 			request.getRequestDispatcher("/registro.jsp").forward(request, response);
 		} else {
-			ArrayList<String> usuarios = Dao.obtenerEmails();
+			ArrayList<String> usuarios = DaoUsuario.obtenerEmails();
 			int registrado = 0;
 			for(String usuario: usuarios) {
 				if(email.equals(usuario)) {
@@ -41,7 +41,7 @@ public class RegistroServlet extends HttpServlet {
 			}
 			if(registrado == 0) {
 				Usuario addUser = new Usuario(email,password,nombre);
-				Dao.insertar(addUser);
+				DaoUsuario.insertar(addUser);
 				request.getSession().setAttribute("email", email);
 				request.getSession().setAttribute("nombre", nombre);
 				//request.getSession().setAttribute("usuario", addUser);

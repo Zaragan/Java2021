@@ -2,7 +2,7 @@ package com.proyecto.controladores;
 
 import java.io.IOException;
 
-import com.proyecto.acceso.Dao;
+import com.proyecto.acceso.DaoUsuario;
 import com.proyecto.entidades.Usuario;
 
 import jakarta.servlet.ServletException;
@@ -25,12 +25,11 @@ public class LoginServlet extends HttpServlet {
 			request.setAttribute("error", "Rellena los campos obligatorios.");
 			request.getRequestDispatcher("/identificarse.jsp").forward(request, response);
 		} else {
-			//			COMPROBAR ESTO
 			if(email.isEmpty() || password.isEmpty()) {
 				request.setAttribute("error", "Rellena los campos obligatorios.");
 				request.getRequestDispatcher("/index.jsp").forward(request, response);
 			} else {
-				Usuario usuario = Dao.obtenerPorEmail(email);
+				Usuario usuario = DaoUsuario.obtenerPorEmail(email);
 				if(usuario == null) {
 					request.setAttribute("error", "No se ha encontrado el usuario.");
 					request.getRequestDispatcher("/index.jsp").forward(request, response);
@@ -46,7 +45,6 @@ public class LoginServlet extends HttpServlet {
 					}
 				}
 			}
-			//		COMPROBAR ESTO
 		}	
 	}
 }

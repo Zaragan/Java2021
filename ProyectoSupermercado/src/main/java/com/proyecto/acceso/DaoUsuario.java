@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import com.proyecto.entidades.Usuario;
 
-public class Dao {
+public class DaoUsuario {
 	// Datos para personalizar qué base de datos vamos a utilizar
 		private static final String JDBC_DRIVER = "org.sqlite.JDBC"; // Driver de la base de datos (lo indica cada fabricante)
 		private static final String URL = "jdbc:sqlite:C:\\Users\\curso\\Desktop\\Oracle Workspace\\.database\\ProyectoSupermercado.db";
