@@ -5,17 +5,19 @@ import java.io.IOException;
 import com.proyecto.acceso.DaoUsuario;
 import com.proyecto.entidades.Usuario;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/identificar")
+@WebServlet("/identificar") 
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {}
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
+		response.sendRedirect("index.jsp");
+	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter("email");
@@ -23,25 +25,24 @@ public class LoginServlet extends HttpServlet {
 
 		if(email.isEmpty() || password.isEmpty()) {
 			request.setAttribute("error", "Rellena los campos obligatorios.");
-			request.getRequestDispatcher("/identificarse.jsp").forward(request, response);
+			request.getRequestDispatcher("/identificar.jsp").forward(request, response);
 		} else {
 			if(email.isEmpty() || password.isEmpty()) {
 				request.setAttribute("error", "Rellena los campos obligatorios.");
-				request.getRequestDispatcher("/index.jsp").forward(request, response);
+				request.getRequestDispatcher("/identificar.jsp").forward(request, response);
 			} else {
 				Usuario usuario = DaoUsuario.obtenerPorEmail(email);
 				if(usuario == null) {
 					request.setAttribute("error", "No se ha encontrado el usuario.");
-					request.getRequestDispatcher("/index.jsp").forward(request, response);
+					request.getRequestDispatcher("/identificar.jsp").forward(request, response);
 				} else {
 					
 					if(usuario.getEmail().equals(email) && usuario.getPassword().equals(password)) {
-						request.getSession().setAttribute("email", email);
-						request.getSession().setAttribute("nombre", usuario.getNombre());
+						request.getSession().setAttribute("usuario", usuario);
 						response.sendRedirect("principal.jsp");	
 					} else {
 						request.setAttribute("error", "Usuario o contraseña incorrecta.");
-						request.getRequestDispatcher("/index.jsp").forward(request, response);
+						request.getRequestDispatcher("/identificar.jsp").forward(request, response);
 					}
 				}
 			}

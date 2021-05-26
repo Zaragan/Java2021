@@ -1,5 +1,4 @@
 body{font-family: Courier New; text-align: center;}
-.header{border-bottom: 1px solid black;}
-ul{display: flex;}
-li{list-style: none; padding-right:10px;}
 main{padding-top: 25px;}
+.dropdown-toggle::after{vertical-align:0;}
+.dropdown-menu[data-bs-popper]{left:-30px}
