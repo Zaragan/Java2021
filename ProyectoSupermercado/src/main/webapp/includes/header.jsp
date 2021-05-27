@@ -22,7 +22,7 @@
 				<ul class="navbar-nav mb-2 mb-lg-0">
 					<li class="nav-item dropdown">
           				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          				<c:if test="${usuario == null}">Usuario Desconocido</c:if><c:if test="${usuario != null}">${usuario.getNombre()}</c:if></a>
+          				<c:if test="${usuario == null}">Usuario Desconocido</c:if><c:if test="${usuario != null}">Bienvenido, ${usuario.getNombre()}</c:if></a>
          				<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
            					<li><a class="dropdown-item" href="identificar.jsp">Identificar</a></li>
 				            <li><a class="dropdown-item" href="registro.jsp">Registro</a></li>

@@ -1,4 +1,6 @@
 body{font-family: Courier New; text-align: center;}
 main{padding-top: 25px;}
-.dropdown-toggle::after{vertical-align:0;}
-.dropdown-menu[data-bs-popper]{left:-30px}
+.navbar{position: relative!important;}
+.dropdown{position:inherit;}
+.dropdown-toggle::after{vertical-align: 0;}
+.dropdown-menu[data-bs-popper]{left: 87%}
