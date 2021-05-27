@@ -43,7 +43,7 @@ public class RegistroServlet extends HttpServlet {
 				Usuario addUser = new Usuario(email,password,nombre);
 				DaoUsuario.insertar(addUser);
 				request.getSession().setAttribute("usuario", addUser);
-				response.sendRedirect("principal.jsp");	
+				response.sendRedirect("principal");	
 			}
 		}	
 	}
