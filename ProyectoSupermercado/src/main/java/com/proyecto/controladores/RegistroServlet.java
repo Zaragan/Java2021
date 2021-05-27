@@ -36,15 +36,13 @@ public class RegistroServlet extends HttpServlet {
 				if(email.equals(usuario)) {
 					registrado = 1;
 					request.setAttribute("error", "Nombre de usuario en uso.");
-					request.getRequestDispatcher("/index.jsp").forward(request, response);
+					request.getRequestDispatcher("/registro.jsp").forward(request, response);
 				}
 			}
 			if(registrado == 0) {
 				Usuario addUser = new Usuario(email,password,nombre);
 				DaoUsuario.insertar(addUser);
-				request.getSession().setAttribute("email", email);
-				request.getSession().setAttribute("nombre", nombre);
-				//request.getSession().setAttribute("usuario", addUser);
+				request.getSession().setAttribute("usuario", addUser);
 				response.sendRedirect("principal.jsp");	
 			}
 		}	
