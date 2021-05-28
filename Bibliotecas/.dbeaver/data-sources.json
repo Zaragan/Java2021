@@ -1,60 +1,18 @@
 {
 	"folders": {},
 	"connections": {
-		"sqlite_jdbc-179220a133f-5b882e4fe48f7bc9": {
+		"sqlite_jdbc-179b2f76927-5aaba928c2a5a02a": {
 			"provider": "generic",
 			"driver": "sqlite_jdbc",
-			"name": "tienda.db",
+			"name": "ProyectoSupermercado.db",
 			"save-password": true,
 			"read-only": false,
 			"configuration": {
-				"database": "C:\\Users\\curso\\Desktop\\Oracle Workspace\\Bibliotecas\\tienda.db",
-				"url": "jdbc:sqlite:C:\\Users\\curso\\Desktop\\Oracle Workspace\\Bibliotecas\\tienda.db",
+				"database": "B:\\Java 2021\\.database\\ProyectoSupermercado.db",
+				"url": "jdbc:sqlite:B:\\Java 2021\\.database\\ProyectoSupermercado.db",
 				"type": "dev",
-				"auth-model": "native"
-			}
-		},
-		"sqlite_jdbc-179224ce3ea-36a4eee3ef12376d": {
-			"provider": "generic",
-			"driver": "sqlite_jdbc",
-			"name": "Aprureba.db",
-			"save-password": true,
-			"show-system-objects": true,
-			"read-only": false,
-			"configuration": {
-				"database": "C:\\Users\\curso\\Desktop\\Oracle Workspace\\Bibliotecas\\Aprureba.db",
-				"url": "jdbc:sqlite:C:\\Users\\curso\\Desktop\\Oracle Workspace\\Bibliotecas\\Aprureba.db",
-				"type": "dev",
-				"auth-model": "native"
-			}
-		},
-		"sqlite_jdbc-179312d3a93-523bcd3e87965640": {
-			"provider": "generic",
-			"driver": "sqlite_jdbc",
-			"name": "supermercado.db",
-			"save-password": true,
-			"read-only": false,
-			"configuration": {
-				"database": "C:\\Users\\curso\\Desktop\\Oracle Workspace\\Supermercado\\supermercado.db",
-				"url": "jdbc:sqlite:C:\\Users\\curso\\Desktop\\Oracle Workspace\\Supermercado\\supermercado.db",
-				"type": "dev",
-				"auth-model": "native"
-			}
-		},
-		"sqlite_jdbc-17979b8526d-4acc48debdc93930": {
-			"provider": "generic",
-			"driver": "sqlite_jdbc",
-			"name": "database.sqlite3",
-			"save-password": true,
-			"read-only": false,
-			"configuration": {
-				"database": "C:\\Users\\curso\\Desktop\\Oracle Workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ProyectoUsuarios\\WEB-INF\\database.sqlite3",
-				"url": "jdbc:sqlite:C:\\Users\\curso\\Desktop\\Oracle Workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ProyectoUsuarios\\WEB-INF\\database.sqlite3",
-				"type": "dev",
-				"auth-model": "native"
-			},
-			"custom-properties": {
-				"database.meta.separate.connection": "false"
+				"auth-model": "native",
+				"handlers": {}
 			}
 		}
 	},
