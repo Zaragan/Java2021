@@ -36,7 +36,7 @@ public class LoginServlet extends HttpServlet {
 					request.setAttribute("error", "No se ha encontrado el usuario.");
 					request.getRequestDispatcher("/identificar.jsp").forward(request, response);
 				} else {
-					
+						
 					if(usuario.getEmail().equals(email) && usuario.getPassword().equals(password)) {
 						request.getSession().setAttribute("usuario", usuario);
 						response.sendRedirect("principal");	

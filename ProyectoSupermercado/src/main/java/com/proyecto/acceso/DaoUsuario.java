@@ -18,7 +18,7 @@ public class DaoUsuario {
 
 		// Consultas que vamos a lanzar a la base de datos
 		// Personalizar tablas y campos
-		private static final String SQL_SELECT = "SELECT uid, email, password, nombre FROM usuarios";
+		private static final String SQL_SELECT = "SELECT uid, email, password, nombre, rol FROM usuarios";
 		private static final String SQL_SELECT_EMAILS = "SELECT email FROM usuarios";
 		private static final String SQL_SELECT_ID = SQL_SELECT + " WHERE uid=?";
 		private static final String SQL_SELECT_EMAIL = SQL_SELECT + " WHERE email=?";
@@ -61,7 +61,7 @@ public class DaoUsuario {
 					// Usar el constructor más grande de nuestra clase para capturar todos los
 					// campos
 					// de la tabla en los propios campos del objeto
-					usuarios.add(new Usuario(rs.getString("email"), rs.getString("password"), rs.getString("nombre")));
+					usuarios.add(new Usuario(rs.getString("email"), rs.getString("password"), rs.getString("nombre"), rs.getInt("rol")));
 				}
 
 				return usuarios;
@@ -102,7 +102,7 @@ public class DaoUsuario {
 					// Usar el constructor más grande de nuestra clase para capturar todos los
 					// campos
 					// de la tabla en los propios campos del objeto
-					usuario = new Usuario(rs.getString("email"), rs.getString("password"), rs.getString("nombre"));
+					usuario = new Usuario(rs.getString("email"), rs.getString("password"), rs.getString("nombre"), rs.getInt("rol"));
 				}
 
 				return usuario;
@@ -124,7 +124,7 @@ public class DaoUsuario {
 					// Usar el constructor más grande de nuestra clase para capturar todos los
 					// campos
 					// de la tabla en los propios campos del objeto
-					usuario = new Usuario(rs.getString("email"), rs.getString("password"), rs.getString("nombre"));
+					usuario = new Usuario(rs.getString("email"), rs.getString("password"), rs.getString("nombre"), rs.getInt("rol"));
 				}
 
 				return usuario;

@@ -2,16 +2,22 @@ package com.proyecto.entidades;
 
 public class Usuario {
 	//	DECLARAR VARIABLES
-	private Integer id;
+	private Integer id, rol;
 	private String email, password, nombre;
 	//	CONSTRUCTOR
-	public Usuario(String email, String password, String nombre) {
+	public Usuario(String email, String password, String nombre, Integer rol) {
 		setEmail(email);
 		setPassword(password);
 		setNombre(nombre);
+		setRol(rol);
 	}
 	//	GETTERS Y SETTERS
-		//	getID
+	public Integer getRol() {
+		return rol;
+	}	//	setEmail
+	public void setRol(Integer rol) {
+		this.rol = rol;
+	}	//	getID
 	public Integer getId() {
 		return id;
 	}	//	getEmail
