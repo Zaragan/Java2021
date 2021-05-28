@@ -11,8 +11,8 @@ import com.proyecto.entidades.Usuario;
 public class DaoUsuario {
 	// Datos para personalizar qué base de datos vamos a utilizar
 		private static final String JDBC_DRIVER = "org.sqlite.JDBC"; // Driver de la base de datos (lo indica cada fabricante)
-		private static final String URL = "jdbc:sqlite:C:\\Users\\curso\\Desktop\\.database\\ProyectoSupermercado.db";
-//		private static final String URL = "jdbc:sqlite:B:\\Java 2021\\.database\\ProyectoSupermercado.db";
+//		private static final String URL = "jdbc:sqlite:C:\\Users\\curso\\Desktop\\.database\\ProyectoSupermercado.db";
+		private static final String URL = "jdbc:sqlite:B:\\Java 2021\\.database\\ProyectoSupermercado.db";
 		private static final String USUARIO_BDD = ""; // Usuario de la base de datos si lo necesita
 		private static final String PASSWORD_BDD = "";// Contraseña de la base de datos si lo necesita
 
@@ -22,8 +22,7 @@ public class DaoUsuario {
 		private static final String SQL_SELECT_EMAILS = "SELECT email FROM usuarios";
 		private static final String SQL_SELECT_ID = SQL_SELECT + " WHERE uid=?";
 		private static final String SQL_SELECT_EMAIL = SQL_SELECT + " WHERE email=?";
-		private static final String SQL_INSERT = "INSERT INTO usuarios (email, password, nombre) VALUES (?, ?, ?)";
-		private static final String SQL_INSERT_PERMISOS = "INSERT INTO permisos (is_admin) VALUES (?)";
+		private static final String SQL_INSERT = "INSERT INTO usuarios (email, password, nombre, rol) VALUES (?, ?, ?, ?)";
 		private static final String SQL_UPDATE = "UPDATE usuarios SET email=?, password=? WHERE uid=?";
 		private static final String SQL_DELETE = "DELETE FROM usuarios WHERE uid=?";
 
@@ -140,14 +139,8 @@ public class DaoUsuario {
 				ps.setString(1, usuario.getEmail());
 				ps.setString(2, usuario.getPassword());
 				ps.setString(3, usuario.getNombre());
+				ps.setString(4, "1");
 				ps.executeUpdate();
-			} catch (SQLException e) {
-				throw new RuntimeException("Ha habido un error al insertar el registro", e);
-			}
-			try (Connection con = obtenerConexion(); PreparedStatement ps = con.prepareStatement(SQL_INSERT_PERMISOS);) {				
-				ps.setString(1, "0");
-				ps.executeUpdate();
-				
 			} catch (SQLException e) {
 				throw new RuntimeException("Ha habido un error al insertar el registro", e);
 			}
