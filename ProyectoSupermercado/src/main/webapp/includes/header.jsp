@@ -19,9 +19,10 @@
 		<div class="container-fluid">
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li class="nav-item"><a class="nav-link active" aria-current="page" href="index.jsp">Principal</a></li>
+					<c:if test="${usuario == null}"><li class="nav-item"><a class="nav-link active" aria-current="page" href="index.jsp">Índice</a></li></c:if>
+					<c:if test="${usuario != null}"><li class="nav-item"><a class="nav-link active" aria-current="page" href="principal">Principal</a></li></c:if>
 					<li class="nav-item"><a class="nav-link" href="#">Link A</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Link B</a></li>
+					<c:if test="${usuario.rol == 2}"><li class="nav-item"><a class="nav-link" href="#">Administración</a></li></c:if>
 				</ul>
 				<ul class="navbar-nav mb-2 mb-lg-0">
 					<li class="nav-item dropdown">
