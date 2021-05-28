@@ -15,34 +15,31 @@ import javax.servlet.http.HttpSession;
 
 import com.proyecto.entidades.Usuario;
 
-/**
- * Servlet Filter implementation class LoginFilter
- */
-@WebFilter("1principal/*")
+@WebFilter("/principal")
 public class LoginFilter implements Filter {
 	
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		/*HttpServletRequest req = (HttpServletRequest)request;
+		HttpServletRequest req = (HttpServletRequest)request;
 		HttpServletResponse res = (HttpServletResponse)response;
 		
 		HttpSession session = req.getSession();
-		Usuario usuario = (Usuario) session.getAttribute("usuario");
-		
-		if(usuario != null && usuario.getRol().equals("0")) {
-			chain.doFilter(request, response);
-		} else {
+		if(session.getAttribute("usuario") == null) {
 			req.setAttribute("error", "El usuario no tiene permiso para acceder");
-			//res.sendRedirect(req.getContextPath() + "/login");
-			req.getRequestDispatcher("/login").forward(req, res);
-		}*/
+			req.getRequestDispatcher("/identificar.jsp").forward(req, res);
+		} else {
+			Usuario usuario = (Usuario) session.getAttribute("usuario");
+			if(usuario != null && usuario.getRol().equals(1) || usuario.getRol().equals(2)) {
+				chain.doFilter(request, response);
+			} else {
+				req.setAttribute("error", "El usuario no tiene permiso para acceder");
+				//res.sendRedirect(req.getContextPath() + "/login");
+				req.getRequestDispatcher("/identificar.jsp").forward(req, res);
+			}			
+		}
 	}
 
-	public void destroy() {
-		// TODO Auto-generated method stub
-	}
+	public void destroy() {}
 
-	public void init(FilterConfig fConfig) throws ServletException {
-		// TODO Auto-generated method stub
-	}
+	public void init(FilterConfig fConfig) throws ServletException {}
 
 }
