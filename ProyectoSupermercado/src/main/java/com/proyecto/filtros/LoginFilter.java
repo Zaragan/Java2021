@@ -32,7 +32,6 @@ public class LoginFilter implements Filter {
 				chain.doFilter(request, response);
 			} else {
 				req.setAttribute("error", "El usuario no tiene permiso para acceder");
-				//res.sendRedirect(req.getContextPath() + "/login");
 				req.getRequestDispatcher("/identificar.jsp").forward(req, res);
 			}			
 		}
