@@ -1,4 +1,4 @@
-package com.proyecyo.admin;
+package com.proyecto.admin;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/IndexServlet")
+@WebServlet("/admin")
 public class IndexServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
