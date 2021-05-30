@@ -16,7 +16,7 @@
     	<th scope="row">${producto.id}</th>
     	<td>${producto.nombre}</td>
     	<td>${producto.precio}</td>
-    	<td>${producto.cantidad }</td>
+    	<td>${producto.cantidad}</td>
     </tr>
 	</c:forEach>
   </tbody>
