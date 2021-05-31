@@ -11,6 +11,19 @@
 				"database": "B:\\Java 2021\\.database\\ProyectoSupermercado.db",
 				"url": "jdbc:sqlite:B:\\Java 2021\\.database\\ProyectoSupermercado.db",
 				"type": "dev",
+				"auth-model": "native"
+			}
+		},
+		"sqlite_jdbc-179c2867abd-6b1f2d55e6fcc8a": {
+			"provider": "generic",
+			"driver": "sqlite_jdbc",
+			"name": "evaluacion.db",
+			"save-password": true,
+			"read-only": false,
+			"configuration": {
+				"database": "B:\\Java 2021\\.database\\evaluacion.db",
+				"url": "jdbc:sqlite:B:\\Java 2021\\.database\\evaluacion.db",
+				"type": "dev",
 				"auth-model": "native",
 				"handlers": {}
 			}
