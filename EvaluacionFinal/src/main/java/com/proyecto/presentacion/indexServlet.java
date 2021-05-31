@@ -13,7 +13,7 @@ import com.proyecto.acceso.DaoCliente;
 import com.proyecto.entidades.Cliente;
 
 @WebServlet("/index")
-public class Index extends HttpServlet {
+public class indexServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -24,7 +24,6 @@ public class Index extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
-		//	Cambiar de String a Integer
 		Integer intId = Integer.valueOf(id);
 		Cliente cliente = DaoCliente.obtenerPorId(intId);
 		request.setAttribute("cliente", cliente);

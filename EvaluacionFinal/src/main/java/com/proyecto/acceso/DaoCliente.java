@@ -12,7 +12,8 @@ import com.proyecto.entidades.Cliente;
 public class DaoCliente {
 	private static final String JDBC_DRIVER = "org.sqlite.JDBC";
 	// ACUERDATE DE CAMBIAR LA URL ANTES DE ENVIAR EL PROYECTO!!!!!!!!!!!!!!!
-	private static final String URL = "jdbc:sqlite:C:\\Users\\curso\\Desktop\\Oracle Workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\EvaluacionFinal\\WEB-INF\\evaluacion.db";
+//	private static final String URL = "jdbc:sqlite:C:\\Users\\curso\\Desktop\\Oracle Workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\EvaluacionFinal\\WEB-INF\\evaluacion.db";
+	private static final String URL = "jdbc:sqlite:B:\\Java 2021\\.database\\evaluacion.db";
 	private static final String USUARIO_BDD = "";
 	private static final String PASSWORD_BDD = "";
 
@@ -59,6 +60,7 @@ public class DaoCliente {
 			throw new RuntimeException("Ha habido un error al obtener los registros", e);
 		}
 	}
+	
 	public static Cliente obtenerPorId(Integer id) {
 		try (Connection con = obtenerConexion(); PreparedStatement ps = con.prepareStatement(SQL_SELECT_ID);) {
 			ps.setInt(1, id);
@@ -72,52 +74,27 @@ public class DaoCliente {
 			throw new RuntimeException("Ha habido un error al obtener el registro cuyo id es " + id, e);
 		}
 	}
+	//		Funcion agregar aqui
+	//
+	//		--------------------
+	public static void modificar(String nombre, String apellido, String telefono, String mail, Double saldo, Integer id) {
+		try (Connection con = obtenerConexion(); PreparedStatement ps = con.prepareStatement(SQL_UPDATE);) {
+
+			ps.setString(1, nombre);
+			ps.setString(2, apellido);
+			ps.setString(3, telefono);
+			ps.setString(4, mail);
+			ps.setDouble(5, saldo);
+			ps.setInt(6, id);
+
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException("Ha habido un error al modificar el registro", e);
+		}
+	}
 	
 	/*
-	public static Usuario obtenerPorId(Integer id) {
-		try (Connection con = obtenerConexion(); PreparedStatement ps = con.prepareStatement(SQL_SELECT_ID);) {
-
-			ps.setInt(1, id);
-
-			ResultSet rs = ps.executeQuery();
-
-			Usuario usuario = null;
-
-			if (rs.next()) {
-				// Usar el constructor más grande de nuestra clase para capturar todos los
-				// campos
-				// de la tabla en los propios campos del objeto
-				usuario = new Usuario(rs.getString("email"), rs.getString("password"));
-			}
-
-			return usuario;
-		} catch (SQLException e) {
-			throw new RuntimeException("Ha habido un error al obtener el registro cuyo id es " + id, e);
-		}
-	}
-
-	public static Usuario obtenerPorEmail(String email) {
-		try (Connection con = obtenerConexion(); PreparedStatement ps = con.prepareStatement(SQL_SELECT_EMAIL);) {
-
-			ps.setString(1, email);
-
-			ResultSet rs = ps.executeQuery();
-
-			Usuario usuario = null;
-
-			if (rs.next()) {
-				// Usar el constructor más grande de nuestra clase para capturar todos los
-				// campos
-				// de la tabla en los propios campos del objeto
-				usuario = new Usuario(rs.getString("email"), rs.getString("password"));
-			}
-
-			return usuario;
-		} catch (SQLException e) {
-			throw new RuntimeException("Ha habido un error al obtener el registro cuyo email es " + email, e);
-		}
-	}
-
+	
 	// Debemos cambiar Usuario por el que represente nuestros datos
 	public static void insertar(Usuario usuario) {
 		try (Connection con = obtenerConexion(); PreparedStatement ps = con.prepareStatement(SQL_INSERT);) {
