@@ -1,8 +1,6 @@
 package com.proyecto.presentacion;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,21 +10,22 @@ import javax.servlet.http.HttpServletResponse;
 import com.proyecto.acceso.DaoCliente;
 import com.proyecto.entidades.Cliente;
 
-@WebServlet("/index")
-public class indexServlet extends HttpServlet {
+@WebServlet("/agregar")
+public class agregarServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Cliente> clientes = DaoCliente.obtenerTodos();
-		request.setAttribute("clientes", clientes);
-		request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
+		response.sendRedirect("index");
 	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Integer id = Integer.valueOf(request.getParameter("id"));
-		Cliente cliente = DaoCliente.obtenerPorId(id);
-		request.setAttribute("cliente", cliente);
-		request.getRequestDispatcher("WEB-INF/editar.jsp").forward(request, response);
+		String nombre = request.getParameter("cNombre");
+		String apellido = request.getParameter("cApellido");
+		String telefono = request.getParameter("cTelefono");
+		String mail = request.getParameter("cMail");
+		Double saldo = Double.parseDouble(request.getParameter("cSaldo"));
+		
+		DaoCliente.insertar(new Cliente(nombre,apellido, null, telefono,mail,saldo));
+		response.sendRedirect("index");
 	}
 
 }

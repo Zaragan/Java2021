@@ -12,8 +12,8 @@ import com.proyecto.entidades.Cliente;
 public class DaoCliente {
 	private static final String JDBC_DRIVER = "org.sqlite.JDBC";
 	// ACUERDATE DE CAMBIAR LA URL ANTES DE ENVIAR EL PROYECTO!!!!!!!!!!!!!!!
-//	private static final String URL = "jdbc:sqlite:C:\\Users\\curso\\Desktop\\Oracle Workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\EvaluacionFinal\\WEB-INF\\evaluacion.db";
-	private static final String URL = "jdbc:sqlite:B:\\Java 2021\\.database\\evaluacion.db";
+	private static final String URL = "jdbc:sqlite:C:\\Users\\curso\\Desktop\\Oracle Workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\EvaluacionFinal\\WEB-INF\\evaluacion.db";
+//	private static final String URL = "jdbc:sqlite:B:\\Java 2021\\.database\\evaluacion.db";
 	private static final String USUARIO_BDD = "";
 	private static final String PASSWORD_BDD = "";
 
@@ -74,9 +74,20 @@ public class DaoCliente {
 			throw new RuntimeException("Ha habido un error al obtener el registro cuyo id es " + id, e);
 		}
 	}
-	//		Funcion agregar aqui
-	//
-	//		--------------------
+	public static void insertar(Cliente cliente) {
+		try (Connection con = obtenerConexion(); PreparedStatement ps = con.prepareStatement(SQL_INSERT);) {
+			ps.setString(1, cliente.getNombre());
+			ps.setString(2, cliente.getApellido());
+			ps.setString(3, cliente.getTelefono());
+			ps.setString(4, cliente.getMail());
+			ps.setDouble(5, cliente.getSaldo());
+
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException("Ha habido un error al insertar el registro", e);
+		}
+	}
+	
 	public static void modificar(String nombre, String apellido, String telefono, String mail, Double saldo, Integer id) {
 		try (Connection con = obtenerConexion(); PreparedStatement ps = con.prepareStatement(SQL_UPDATE);) {
 
@@ -93,43 +104,13 @@ public class DaoCliente {
 		}
 	}
 	
-	/*
-	
-	// Debemos cambiar Usuario por el que represente nuestros datos
-	public static void insertar(Usuario usuario) {
-		try (Connection con = obtenerConexion(); PreparedStatement ps = con.prepareStatement(SQL_INSERT);) {
-			ps.setString(1, usuario.getEmail());
-			ps.setString(2, usuario.getPassword());
-
-			ps.executeUpdate();
-		} catch (SQLException e) {
-			throw new RuntimeException("Ha habido un error al insertar el registro", e);
-		}
-	}
-
-	// Debemos cambiar Usuario por el que represente nuestros datos
-	public static void modificar(Usuario usuario) {
-		try (Connection con = obtenerConexion(); PreparedStatement ps = con.prepareStatement(SQL_UPDATE);) {
-
-			ps.setString(1, usuario.getEmail());
-			ps.setString(2, usuario.getPassword());
-			ps.setInt(5, usuario.getId());
-
-			ps.executeUpdate();
-		} catch (SQLException e) {
-			throw new RuntimeException("Ha habido un error al modificar el registro", e);
-		}
-	}
-
-	// Debemos cambiar Usuario por el que represente nuestros datos
-	public static void borrar(Integer id) {
+	public static void eliminar(Integer id) {
 		try (Connection con = obtenerConexion(); PreparedStatement ps = con.prepareStatement(SQL_DELETE);) {
-
 			ps.setInt(1, id);
 
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			throw new RuntimeException("Ha habido un error al modificar el registro", e);
 		}
-	}*/
+	}
 }

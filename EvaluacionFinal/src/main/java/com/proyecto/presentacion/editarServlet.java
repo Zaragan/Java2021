@@ -21,11 +21,8 @@ public class editarServlet extends HttpServlet {
 		String apellido = request.getParameter("cApellido");
 		String telefono = request.getParameter("cTelefono");
 		String mail = request.getParameter("cMail");
-		String sSaldo = request.getParameter("cSaldo");
-		Double saldo = Double.parseDouble(sSaldo);
-		String sId = request.getParameter("cId");
-		//	Aquí está el problema.
-		Integer id = Integer.valueOf(sId);
+		Double saldo = Double.parseDouble(request.getParameter("cSaldo"));
+		Integer id = Integer.parseInt(request.getParameter("cId"));
 		
 		DaoCliente.modificar(nombre, apellido, telefono, mail, saldo, id);
 		response.sendRedirect("index");

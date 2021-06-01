@@ -1,8 +1,6 @@
 package com.proyecto.presentacion;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,23 +8,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.proyecto.acceso.DaoCliente;
-import com.proyecto.entidades.Cliente;
 
-@WebServlet("/index")
-public class indexServlet extends HttpServlet {
+@WebServlet("/eliminar")
+public class eliminarServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Cliente> clientes = DaoCliente.obtenerTodos();
-		request.setAttribute("clientes", clientes);
-		request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
+		response.sendRedirect("index");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Integer id = Integer.valueOf(request.getParameter("id"));
-		Cliente cliente = DaoCliente.obtenerPorId(id);
-		request.setAttribute("cliente", cliente);
-		request.getRequestDispatcher("WEB-INF/editar.jsp").forward(request, response);
+		Integer id = Integer.valueOf(request.getParameter("cId"));
+		DaoCliente.eliminar(id);
+		response.sendRedirect("index");
 	}
 
 }

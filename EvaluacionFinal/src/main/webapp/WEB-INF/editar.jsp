@@ -35,7 +35,7 @@
 				<label for="cSaldo" class="form-label">Saldo</label> <input
 					type="text" class="form-control" id="cSaldo" name="cSaldo" value="${cliente.saldo}">
 			</div>
-			<input type="hidden" id="cId" name="${cliente.id}">
+			<input type="hidden" id="cId" name="cId" value="${cliente.id}">
 			<button type="submit" class="btn btn-primary">Guardar</button>
 		</form>
 	</main>
