@@ -6,9 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<base href="/ProyectoSupermercado/">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 <link rel="stylesheet" href="includes/css/main.css">
@@ -20,7 +19,7 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<c:if test="${usuario == null}"><li class="nav-item"><a class="nav-link active" aria-current="page" href="index.jsp">Índice</a></li></c:if>
-					<c:if test="${usuario != null}"><li class="nav-item"><a class="nav-link active" aria-current="page" href="index">Principal</a></li></c:if>
+					<c:if test="${usuario != null}"><li class="nav-item"><a class="nav-link active" aria-current="page" href="principal">Principal</a></li></c:if>
 					<c:if test="${usuario.rol == 2}"><li class="nav-item"><a class="nav-link" href="#">Administración</a></li></c:if>
 				</ul>
 				<ul class="navbar-nav mb-2 mb-lg-0">
@@ -39,4 +38,3 @@
 			</div>
 		</div>
 	</nav>
-<main class="container">
