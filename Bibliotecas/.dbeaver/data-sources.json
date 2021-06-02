@@ -24,6 +24,19 @@
 				"database": "B:\\Java 2021\\.database\\evaluacion.db",
 				"url": "jdbc:sqlite:B:\\Java 2021\\.database\\evaluacion.db",
 				"type": "dev",
+				"auth-model": "native"
+			}
+		},
+		"sqlite_jdbc-179caed43cd-427f9069f33fb6b3": {
+			"provider": "generic",
+			"driver": "sqlite_jdbc",
+			"name": "evaluacion.db 2",
+			"save-password": true,
+			"read-only": false,
+			"configuration": {
+				"database": "B:\\Java 2021\\Workspace\\EvaluacionFinal\\src\\main\\webapp\\WEB-INF\\evaluacion.db",
+				"url": "jdbc:sqlite:B:\\Java 2021\\Workspace\\EvaluacionFinal\\src\\main\\webapp\\WEB-INF\\evaluacion.db",
+				"type": "dev",
 				"auth-model": "native",
 				"handlers": {}
 			}
