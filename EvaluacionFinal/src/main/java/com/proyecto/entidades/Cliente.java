@@ -7,12 +7,16 @@ public class Cliente {
 	
 	//		CONSTRUCTOR
 	public Cliente(String nombre, String apellido, Integer id, String telefono, String mail, Double saldo) {
-		setNombre(nombre);
-		setApellido(apellido);
-		setTelefono(telefono);
-		setMail(mail);
-		setId(id);
-		setSaldo(saldo);
+		if(nombre == null || apellido == null || telefono == null || mail == null || saldo == null) {
+			throw new RuntimeException("No se permiten valores nulos.");
+		} else {
+			setNombre(nombre);
+			setApellido(apellido);
+			setTelefono(telefono);
+			setMail(mail);
+			setId(id);
+			setSaldo(saldo);			
+		}
 	}
 	
 	@Override
