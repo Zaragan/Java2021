@@ -7,13 +7,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.naming.Context;
+
 import com.proyecto.entidades.Cliente;
 
 public class DaoCliente {
 	private static final String JDBC_DRIVER = "org.sqlite.JDBC";
-	// ACUERDATE DE CAMBIAR LA URL ANTES DE ENVIAR EL PROYECTO!!!!!!!!!!!!!!!
-	private static final String URL = "jdbc:sqlite:C:\\Users\\curso\\Desktop\\Oracle Workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\EvaluacionFinal\\WEB-INF\\evaluacion.db";
-//	private static final String URL = "jdbc:sqlite:B:\\Java 2021\\.database\\evaluacion.db";
+	private static final String DEPLOY = System.getProperty("wtp.deploy");
+	private static final String ROOT = getcon
+	private static final String URL = "jdbc:sqlite:"+DEPLOY+"\\EvaluacionFinal\\WEB-INF\\evaluacion.db";
 	private static final String USUARIO_BDD = "";
 	private static final String PASSWORD_BDD = "";
 
@@ -32,7 +34,7 @@ public class DaoCliente {
 	}
 
 	// Totalmente genérico. No hay que personalizar
-	private static Connection obtenerConexion() {
+	public static Connection obtenerConexion() {
 		try {
 			return DriverManager.getConnection(URL, USUARIO_BDD, PASSWORD_BDD);
 		} catch (Exception e) {
