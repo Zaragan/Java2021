@@ -7,14 +7,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.naming.Context;
-
 import com.proyecto.entidades.Cliente;
 
 public class DaoCliente {
 	private static final String JDBC_DRIVER = "org.sqlite.JDBC";
 	private static final String DEPLOY = System.getProperty("wtp.deploy");
-	private static final String ROOT = getcon
 	private static final String URL = "jdbc:sqlite:"+DEPLOY+"\\EvaluacionFinal\\WEB-INF\\evaluacion.db";
 	private static final String USUARIO_BDD = "";
 	private static final String PASSWORD_BDD = "";
